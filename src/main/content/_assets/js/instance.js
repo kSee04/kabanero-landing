@@ -17,6 +17,9 @@
  ******************************************************************************/
 
 $(document).ready(function() {
+    var InlineLoading = CarbonComponents.InlineLoading;
+    InlineLoading.create(document.getElementById('instance-spinner'));
+    InlineLoading.create(document.getElementById('date-spinner'));
     loadAllInfo();
     setListeners();    
 });
@@ -46,7 +49,7 @@ function setListeners(){
 // Request to get all instances names
 function loadAllInfo(){
     fetchAllInstances()
-        .then(setInstanceData);
+        .then(setInstanceData)
 
     fetchAllTools()
         .then(setToolData);
@@ -61,8 +64,32 @@ function setInstanceData(instances){
         let pane = new InstancePane(instanceName, details.dateCreated, details.repos, details.clusterName, 
             details.collections, details.cliURL);
 
-        $("#instance-data-container").append(pane.instanceHTML, "<hr/>");
+        setInstanceDataRow(pane);
+
+        console.log($(".bx--parent-row td:nth-child(2)"));
+        console.log(details.clusterName);
+        console.log(details.dateCreated);
+        console.log(details.repos);
+        console.log(details.collections);
+        console.log(details.cliURL);
+        $(".bx--inline-loading").css('display', 'none');
+        $(".bx--parent-row td:nth-child(2)").html(instanceName);
+        $(".bx--parent-row td:nth-child(3)").html(details.dateCreated);
+        $(".bx--parent-row td:nth-child(4)").html(details.repos);
+        $(".bx--parent-row td:nth-child(5)").html(details.collections);
+        $(".bx--parent-row td:nth-child(3)").html(details.cliURL);
+        $(".bx--child-row-inner-container").html(pane.hiddenRowHTML);
+        setInstanceDataRow(pane);
+        //$("#instance-data-container").append(pane.instanceHTML, "<hr/>");
     }
+}
+
+function setInstanceDataRow(instance){
+    //clone the row
+    let rowToCopy = $("#instance-table-body tr:nth-child(1)").clone();
+    let hiddenRowToCopy = $("#instance-table-body tr:nth-child(2)").clone();
+    $(rowToCopy).append(hiddenRowToCopy);
+
 }
 
 // Set details on UI for any given instance

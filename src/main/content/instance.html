@@ -4,9 +4,11 @@ home: true
 js:
 - instance-common
 - instance
+- thirdparty/carbon/carbon-components.min
 css:
 - home
 - instance
+- thirdparty/carbon/carbon-components.min
 seo-title: Kabanero
 permalink: /instance/
 ---
@@ -14,7 +16,7 @@ permalink: /instance/
 <!-- Welcome header -->
 <div id="meta-data" class="container-fluid">
     <!-- Meta Data is dynamically generated -->
-    <div class="row">
+    <!-- <div class="row">
         <div id="instance-data-container" class="col-md">
             <h2>{{t.instance.kab-instances}}</h2>
         </div>
@@ -22,5 +24,108 @@ permalink: /instance/
             <h2>{{t.instance.tools}}</h2>
             <p id="no-tools" class="hide">{{t.instance.no-tools}}</p>
         </div>
+    </div> -->
+    <div class="row">
+            <!--
+  Copyright IBM Corp. 2016, 2018
+
+  This source code is licensed under the Apache-2.0 license found in the
+  LICENSE file in the root directory of this source tree.
+-->
+<!-- v10 Data Table -->
+  <div class="bx--data-table-container " data-table>
+      <!-- Table -->
+      <table class="bx--data-table  bx--data-table--sort  " >
+        <thead>
+          <tr>
+              <th  class="bx--table-expand" data-event="expandAll">
+                <!-- checkbox th -->
+                <!-- sortable th  -->
+                      <span class="bx--table-header-label"></span>
+              </th>
+              <th >
+                <!-- checkbox th -->
+                <!-- sortable th  -->
+                    <button class="bx--table-sort" data-event="sort" title="Name">
+                      <span class="bx--table-header-label">Instance Name</span>
+                      <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.3 9.3L8.5 13.1 8.5 1 7.5 1 7.5 13.1 3.7 9.3 3 10 8 15 13 10z"></path></svg>
+                      <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon-unsorted" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.8 10.3L12 12.1 12 2 11 2 11 12.1 9.2 10.3 8.5 11 11.5 14 14.5 11zM4.5 2L1.5 5 2.2 5.7 4 3.9 4 14 5 14 5 3.9 6.8 5.7 7.5 5z"></path></svg>
+                    </button>
+                  <!-- no sort th -->
+                            </th>
+              <th >
+                <!-- checkbox th -->
+                <!-- sortable th  -->
+                    <button class="bx--table-sort" data-event="sort" title="Protocol">
+                      <span class="bx--table-header-label">Date Created</span>
+                      <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.3 9.3L8.5 13.1 8.5 1 7.5 1 7.5 13.1 3.7 9.3 3 10 8 15 13 10z"></path></svg>
+                      <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-sort__icon-unsorted" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.8 10.3L12 12.1 12 2 11 2 11 12.1 9.2 10.3 8.5 11 11.5 14 14.5 11zM4.5 2L1.5 5 2.2 5.7 4 3.9 4 14 5 14 5 3.9 6.8 5.7 7.5 5z"></path></svg>
+                    </button>
+                  <!-- no sort th -->
+                            </th>
+          </tr>
+        </thead>
+      <tbody id="instance-table-body">
+          <tr class="bx--parent-row" data-parent-row  >
+              <!-- expand icon td -->
+                  <td class="bx--table-expand" data-event="expand">
+                    <button class="bx--table-expand__button">
+                      <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--table-expand__svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path></svg>
+                    </button>
+                  </td>
+                <!-- inline action td's -->
+              <!-- expand icon td -->
+                  <td >
+                      <div data-inline-loading class="bx--inline-loading" role="alert" aria-live="assertive" id="instance-spinner">
+
+                        <div class="bx--inline-loading__animation">
+                            <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+                              <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+                                <circle class="bx--loading__background" cx="0" cy="0" r="26.8125" />
+                                <circle class="bx--loading__stroke" cx="0" cy="0" r="26.8125"/>
+                              </svg>
+                            </div>
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-loading__checkmark-container" hidden="" data-inline-loading-finished="" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8,1C4.1,1,1,4.1,1,8c0,3.9,3.1,7,7,7s7-3.1,7-7C15,4.1,11.9,1,8,1z M7,11L4.3,8.3l0.9-0.8L7,9.3l4-3.9l0.9,0.8L7,11z"></path><path d="M7,11L4.3,8.3l0.9-0.8L7,9.3l4-3.9l0.9,0.8L7,11z" data-icon-path="inner-path" opacity="0"></path></svg>
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-loading--error" hidden="" data-inline-loading-error="" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M2,16H2A14,14,0,1,0,16,2,14,14,0,0,0,2,16Zm23.15,7.75L8.25,6.85a12,12,0,0,1,16.9,16.9ZM8.24,25.16A12,12,0,0,1,6.84,8.27L23.73,25.16a12,12,0,0,1-15.49,0Z"></path></svg>
+                          </div>
+                        </div>
+                    <!-- truncated new markup -->
+                  </td>
+                          <!-- expand icon td -->
+                  <td >
+                      <div data-inline-loading class="bx--inline-loading" role="alert" aria-live="assertive" id="date-spinner">
+
+                        <div class="bx--inline-loading__animation">
+                            <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+                              <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+                                <circle class="bx--loading__background" cx="0" cy="0" r="26.8125" />
+                                <circle class="bx--loading__stroke" cx="0" cy="0" r="26.8125"/>
+                              </svg>
+                            </div>
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-loading__checkmark-container" hidden="" data-inline-loading-finished="" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8,1C4.1,1,1,4.1,1,8c0,3.9,3.1,7,7,7s7-3.1,7-7C15,4.1,11.9,1,8,1z M7,11L4.3,8.3l0.9-0.8L7,9.3l4-3.9l0.9,0.8L7,11z"></path><path d="M7,11L4.3,8.3l0.9-0.8L7,9.3l4-3.9l0.9,0.8L7,11z" data-icon-path="inner-path" opacity="0"></path></svg>
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--inline-loading--error" hidden="" data-inline-loading-error="" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M2,16H2A14,14,0,1,0,16,2,14,14,0,0,0,2,16Zm23.15,7.75L8.25,6.85a12,12,0,0,1,16.9,16.9ZM8.24,25.16A12,12,0,0,1,6.84,8.27L23.73,25.16a12,12,0,0,1-15.49,0Z"></path></svg>
+                          </div>
+                        </div>
+                    <!-- truncated new markup -->
+                  </td>
+                      </tr>
+          <!-- Expandable child row -->
+              <tr class="bx--expandable-row bx--expandable-row--hidden" data-child-row>
+                <td colspan="8">
+                  <div class="bx--child-row-inner-container">
+                     <p>A variety of content types can live here. Be sure to follow Carbon design guidelines for spacing and alignment.</p>
+        
+                  </div>
+                </td>
+              </tr>
+        </tbody>
+      </table>
+    
+      <!-- Pagination -->
+    </div>
+    </div>
+
+  <!-- Pagination -->
+</div>
     </div>
 </div>
