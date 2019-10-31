@@ -66,21 +66,10 @@ function setInstanceData(instances){
 
         setInstanceDataRow(pane);
 
-        console.log($(".bx--parent-row td:nth-child(2)"));
-        console.log(details.clusterName);
-        console.log(details.dateCreated);
-        console.log(details.repos);
-        console.log(details.collections);
-        console.log(details.cliURL);
         $(".bx--inline-loading").css('display', 'none');
         $(".bx--parent-row td:nth-child(2)").html(instanceName);
         $(".bx--parent-row td:nth-child(3)").html(details.dateCreated);
-        $(".bx--parent-row td:nth-child(4)").html(details.repos);
-        $(".bx--parent-row td:nth-child(5)").html(details.collections);
-        $(".bx--parent-row td:nth-child(3)").html(details.cliURL);
         $(".bx--child-row-inner-container").html(pane.hiddenRowHTML);
-        setInstanceDataRow(pane);
-        //$("#instance-data-container").append(pane.instanceHTML, "<hr/>");
     }
 }
 
