@@ -62,3 +62,12 @@ div.tooltip-inner {
 caption {
     caption-side: top;
 }
+
+.gray-background{
+    background-color:#f3f3f3;
+}
+
+$feature-flags: (grid-columns-16: true);
+
+@import
+"../../../../../node_modules/carbon-components/scss/globals/grid/grid"
