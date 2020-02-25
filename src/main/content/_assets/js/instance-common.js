@@ -73,48 +73,20 @@ function fetchStacks(instanceName) {
 }
 
 let ToolPane = class {
-    constructor(label, location) {
+    constructor(label, location, paneText, buttonText) {
         this.label = label;
         this.location = location;
+        this.paneText = paneText;
+        this.buttonText = buttonText;
     }
 
     get toolHTML() {
         let tile = $($("#tool-tile-template").clone()[0].innerHTML);
-        console.log(tile);
-        $(tile).find(".tile-title").append(this.label);
-        $(tile).find(".tile-text").append("blah");
+        $(tile).find(".tile-title").text(`${this.label}`);
+        $(tile).find(".tile-text").text(`${this.paneText}`);
         $(tile).find("a").attr("href", this.location);
+        $(tile).find(".button-text").text(`${this.buttonText}`);
         return tile;
-        // let col = $("<div/>", { class: "bx--col-xlg-4" });
-        // let tileDiv = $("<div/>", { class: "bx--tile"});
-        // let tileTitleRow = $("<div/>", { class: "bx--row instance-number-row"});
-        // let tileTitleCol = $("<div/>", { class: "bx--col"});
-        // let tileTextRow = $("<div/>", { class: "bx--row"});
-        // let tileTextCol = $("<div/>", { class: "bx--col"});
-        // let tileButtonRow = $("<div/>", { class: "bx--row"});
-        // let tileButtonCol = $("<div/>", { class: "bx--col-sm-2 bx--col-lg-8"});
-        // let tileButtonAnchorTag = $("<a/>", {href: this.location, target: "_blank"});
-        // let tileButtonButtonTag = $("<button/>", {type: "button", class: "bx--btn bx--btn--secondary tile-instance-button"});
-        // let tileButtonTextSpan = $("<span/>", {text: "testTEST"});
-        // let tileButtonArrowContainer = $("<div/>", {class: "arrow-container"});
-        // //assemble the parts individually then add to DOM
-        // tileTitleCol.append(`<h2>${this.label}</h2>`);
-        // tileTitleRow.append(tileTitleCol);
-
-        // let testText = "testingtestingblahblahblah"
-        // tileTextCol.append(`<p>${testText}</p>`);
-        // tileTextRow.append(tileTextCol);
-
-        // tileButtonButtonTag.append(tileButtonTextSpan);
-        // tileButtonButtonTag.append(tileButtonArrowContainer);
-        // tileButtonAnchorTag.append(tileButtonButtonTag);
-        // tileButtonCol.append(tileButtonAnchorTag);
-        // tileButtonRow.append(tileButtonCol);
-        
-        // tileDiv.append(tileTitleRow);
-        // tileDiv.append(tileTextRow);
-        // tileDiv.append(tileButtonRow)
-        // return col.append(tileDiv);
     }
 };
 

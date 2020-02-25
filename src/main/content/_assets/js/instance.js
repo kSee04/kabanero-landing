@@ -82,40 +82,35 @@ function setToolData(tools) {
             continue;
         }
 
+        let paneText = "Default tool pane text";
+        let buttonText = "Tool Button"; 
+
         if (tool.name === "Application Navigator") {
-            $("#appnav-link").attr("href", `https://${tool.location}`);
-            $("#manage-apps-button").attr("disabled", false);
-            $("#manage-apps-button-text").html("Manage Applications");
-            $("#kappnav-container").show();
+            paneText = "Manage your applications using Application Navigator";
+            buttonText = "Manage Applications";
         }
 
         if (tool.name === "Tekton") {
-            $("#pipeline-link").attr("href", `https://${tool.location}`);
-            $("#pipeline-button").attr("disabled", false);
-            $("#pipeline-button-text").text("Manage Pipelines");
+            tool.name = "Pipelines"
+            paneText = "Manage your pipelines";
+            buttonText = "Manage Pipelines";
         }
 
         if (tool.name === "Red Hat CodeReady Workspaces") {
-            $("#codeready-link").attr("href", `http://${tool.location}`);
-            $("#codeready-button").attr("disabled", false);
-            $("#codeready-button-text").text("Go to CodeReady");
-            $("#codeready-container").show();
+            paneText = "Red Hat CodeReady Workspaces provides a consistent, secure, and zero-configuration development environment.";
+            buttonText = "Go to CodeReady";
         }
 
-        // TODO: remove redundency above
-        // set kappnav url to manage applications link
-        // let toolPane = new ToolPane(tool.name, tool.location);
-        // $("#tool-data-container").append(toolPane.toolHTML);
+        let toolPane = new ToolPane(tool.name, tool.location, paneText, buttonText);
+        $("#tool-data-container").append(toolPane.toolHTML);
+       
         noTools = false;
     }
 
     if (noTools) {
         $("#no-tools").show();
     }
-
-    let toolPane = new ToolPane('test', 'https://google.com');
-    $("#tool-data-container").append(toolPane.toolHTML);
-
+    
     // TODO: remove loading for each individual tool as it loads instead of all at once
     $(".bx--inline-loading").hide();
 }

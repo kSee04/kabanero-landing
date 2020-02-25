@@ -42,7 +42,7 @@ permalink: /instance/
         <div class="bx--col-xlg-12">
             <div class="bx--row" id="tool-data-container">
                 <!-- Instance Card -->
-                <div class="bx--col-xlg-4">
+                <div class="bx--col-xlg-5">
                     <div id="instance-details-card" class="bx--tile">
         
                         <!-- loader -->
@@ -83,7 +83,7 @@ permalink: /instance/
                 </div>
 
                 <!-- Stacks Card -->
-                <div class="bx--col-xlg-4">
+                <div class="bx--col-xlg-5">
                     <div id="stack-details-card" class="bx--tile">
                 
                         <!-- loader -->
@@ -114,111 +114,6 @@ permalink: /instance/
                                         <span id="stacks-oauth-msg">{{t.instance.oauth.configure}}</span>
                                         <div class="arrow-container">
                                             <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#f3f3f3" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform;"><path d="M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z"></path></svg>
-                                        </div>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pipelines Card -->
-                <div class="bx--col-xlg-4">
-                    <div id="pipelines-details-card" class="bx--tile">
-                
-                        <!-- loader -->
-                        {% include loader.html %}
-
-                        <!-- pipeline details -->
-                        <div class="bx--row instance-number-row">
-                            <div class="bx--col">
-                                <h2>{{t.instance.pipelines}}</h2>
-                            </div>
-                        </div>
-
-                        <div class="bx--row">
-                            <div class="bx--col">
-                                <p>{{t.instance.pipelines-blurb}}</p>
-                            </div>
-                        </div>
-
-                        <div class="bx--row">
-                            <div class="bx--col-sm-2 bx--col-lg-8">
-                                <a id="pipeline-link" target="_blank">
-                                    <button class="bx--btn bx--btn--secondary tile-instance-button" id="pipeline-button" type="button" disabled>
-                                        <span id="pipeline-button-text">{{t.instance.not-configured}}</span>
-                                        <div class="arrow-container">
-                                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#f3f3f3" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform;"><path d="M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z"></path></svg>
-                                        </div>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Applications Card -->
-                <div id="kappnav-container" class="bx--col-xlg-4 hide">
-                    <div class="bx--tile">
-
-                        <!-- loader -->
-                        {% include loader.html %}
-
-                        <!-- Application Navigator card details -->
-                        <div class="bx--row instance-number-row">
-                            <div class="bx--col">
-                                <h2>{{t.instance.apps}}</h2>
-                            </div>
-                        </div>
-
-                        <div class="bx--row">
-                            <div class="bx--col">
-                                <p>{{t.instance.app-hub-blurb}}</p>
-                            </div>
-                        </div>
-
-                        <div class="bx--row">
-                            <div class="bx--col-sm-2 bx--col-lg-8">
-                                <a id="appnav-link" target="_blank">
-                                    <button class="bx--btn bx--btn--secondary tile-instance-button" id="manage-apps-button" type="button" disabled>
-                                        <span id="manage-apps-button-text">{{t.instance.not-configured}}</span>
-                                        <div class="arrow-container">
-                                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#f3f3f3" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform;"><path d="M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z"></path></svg>
-                                        </div>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CodeReady Workspace -->
-                <div id="codeready-container" class="bx--col-xlg-4 hide">
-                    <div class="bx--tile">
-                
-                        <!-- loader -->
-                        {% include loader.html %}
-
-                        <!-- pipeline details -->
-                        <div class="bx--row instance-number-row">
-                            <div class="bx--col">
-                                <h2>{{t.instance.codeready}}</h2>
-                            </div>
-                        </div>
-
-                        <div class="bx--row">
-                            <div class="bx--col">
-                                <p>{{t.instance.codeready-blurb}}</p>
-                            </div>
-                        </div>
-
-                        <div class="bx--row">
-                            <div class="bx--col-sm-2 bx--col-lg-8">
-                                <a id="codeready-link" target="_blank">
-                                    <button class="bx--btn bx--btn--secondary tile-instance-button" id="codeready-button" type="button" disabled>
-                                        <span id="codeready-button-text">{{t.instance.not-configured}}</span>
-                                        <div class="arrow-container">
-                                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#f3f3f3" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform;"><path d="M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z"></path></svg>
                                         </div>
                                     </button>
                                 </a>
@@ -282,11 +177,11 @@ permalink: /instance/
     </div>
 </div>
 <template id="tool-tile-template">
-    <div class="bx--col-xlg-4">
+    <div class="bx--col-xlg-5">
         <div class="bx--tile">
             <div class="bx--row instance-number-row">
                 <div class="bx--col">
-                    <h2 class="title-title"></h2>
+                    <h2 class="tile-title"></h2>
                 </div>
             </div>
             <div class="bx--row">
@@ -298,8 +193,10 @@ permalink: /instance/
                 <div class="bx--col-sm-2 bx--col-lg-8">
                     <a href="" target="_blank">
                         <button type="button" class="bx--btn bx--btn--secondary tile-instance-button">
-                            <span>testTEST</span>
-                            <div class="arrow-container"></div>
+                            <span class="button-text"></span>
+                            <div class="arrow-container">
+                            <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#f3f3f3" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform;"><path d="M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z"></path></svg>
+                            </div>
                         </button>
                     </a>
                 </div>
