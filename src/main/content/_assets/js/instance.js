@@ -113,6 +113,9 @@ function setToolData(tools) {
         $("#no-tools").show();
     }
 
+    let toolPane = new ToolPane('test', 'https://google.com');
+    $("#tool-data-container").append(toolPane.toolHTML);
+
     // TODO: remove loading for each individual tool as it loads instead of all at once
     $(".bx--inline-loading").hide();
 }
