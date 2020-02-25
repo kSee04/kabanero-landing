@@ -268,6 +268,8 @@ function setInstanceSelections(instancesJSON) {
         return;
     }
 
+    $("#instance-accordion").empty();
+
     for (let instance of instances) {
         let dateCreated = instance.metadata.creationTimestamp;
 
