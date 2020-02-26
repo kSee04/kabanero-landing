@@ -73,17 +73,20 @@ function fetchStacks(instanceName) {
 }
 
 let ToolPane = class {
-    constructor(label, location) {
+    constructor(label, location, paneText, buttonText) {
         this.label = label;
         this.location = location;
+        this.paneText = paneText;
+        this.buttonText = buttonText;
     }
 
     get toolHTML() {
-        let row = $("<div/>", { class: "row" });
-        let col = $("<div/>", { class: "col-md" });
-        col.append($("<strong/>", { text: `${this.label}: ` }));
-        col.append($("<a/>", { href: this.location, target: "_blank", text: this.location }));
-        return row.append(col);
+        let tile = $($("#tool-tile-template").clone()[0].innerHTML);
+        $(tile).find(".tile-title").text(`${this.label}`);
+        $(tile).find(".tile-text").text(`${this.paneText}`);
+        $(tile).find("a").attr("href", this.location);
+        $(tile).find(".button-text").text(`${this.buttonText}`);
+        return tile;
     }
 };
 

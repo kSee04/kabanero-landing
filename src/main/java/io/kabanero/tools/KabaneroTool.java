@@ -24,10 +24,14 @@ public class KabaneroTool {
     public String namespace;
     public String route;
     public String location;
+    public String instancePageCardText;
+    public String instancePageButtonText;
     
-    public KabaneroTool(String name, String location){
+    public KabaneroTool(String name, String location, String instancePageCardText, String instancePageButtonText){
         this.name = name;
         this.location = location;
+        this.instancePageCardText = instancePageCardText;
+        this.instancePageButtonText = instancePageButtonText;
     }
 
     public String getLocation() {
@@ -60,6 +64,22 @@ public class KabaneroTool {
 
     public void setRoute(String route) {
         this.route = route;
+    }
+
+    public String getInstancePageCardText(){
+        return instancePageCardText;
+    }
+
+    public void setInstancePageCardText(String instancePageCardText) {
+        this.instancePageCardText = instancePageCardText;
+    }
+
+    public String getInstancePageButtonText(){
+        return instancePageButtonText;
+    }
+
+    public void setInstancePageButtonText(String instancePageButtonText) {
+        this.instancePageButtonText = instancePageButtonText;
     }
 
     @Override
