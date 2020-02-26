@@ -60,10 +60,10 @@ public class KabaneroToolManager {
     }
         
     private static void addDefaultTools(KabaneroToolManager tools) {
-        KabaneroTool tekton = new KabaneroTool(Constants.TEKTON_DASHBOARD_LABEL, Constants.TEKTON_DASHBOARD_URL, Constants.TEKTON_INSTANCE_CARD_TEXT, Constants.TEKTON_INSTANCE_BUTTON_TEXT);
+        KabaneroTool tekton = new KabaneroTool(Constants.TEKTON_DASHBOARD_LABEL, Constants.TEKTON_DASHBOARD_URL, Constants.TEKTON_DESCRIPTION, Constants.TEKTON_ACTION_TEXT);
         tools.addTool(tekton);
 
-        KabaneroTool applicationNavigator = new KabaneroTool(Constants.KAPPNAV_LABEL, Constants.KAPPNAV_URL, Constants.KAPPNAV_INSTANCE_CARD_TEXT, Constants.KAPPNAV_INSTANCE_BUTTON_TEXT);
+        KabaneroTool applicationNavigator = new KabaneroTool(Constants.KAPPNAV_LABEL, Constants.KAPPNAV_URL, Constants.KAPPNAV_DESCRIPTION, Constants.KAPPNAV_ACTION_TEXT);
         tools.addTool(applicationNavigator);
     }
     

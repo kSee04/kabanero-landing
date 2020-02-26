@@ -82,7 +82,7 @@ function setToolData(tools) {
             continue;
         }
 
-        let toolPane = new ToolPane(tool.name, tool.location, tool.instancePageCardText, tool.instancePageButtonText);
+        let toolPane = new ToolPane(tool.name, tool.location, tool.description, tool.actionText);
         $("#tool-data-container").append(toolPane.toolHTML);
         noTools = false;
     }
