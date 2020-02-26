@@ -84,7 +84,7 @@ let ToolPane = class {
         let tile = $($("#tool-tile-template").clone()[0].innerHTML);
         $(tile).find(".tile-title").text(`${this.label}`);
         $(tile).find(".tile-text").text(`${this.paneText}`);
-        $(tile).find("a").attr("href", this.location);
+        $(tile).find("a").attr("href", `https://${this.location}`);
         $(tile).find(".button-text").text(`${this.buttonText}`);
         return tile;
     }
