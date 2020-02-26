@@ -81,7 +81,7 @@ public class KabaneroToolManagerTest {
     }
 
     private static KabaneroTool createKabeKabaneroTool(String id) {
-        return new KabaneroTool(id, id);
+        return new KabaneroTool(id, id, id, id);
     }
 
 }

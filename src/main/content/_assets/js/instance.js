@@ -78,30 +78,11 @@ function setToolData(tools) {
 
     for (let tool of tools) {
 
-        if (!tool.name || tool.name.length === 0 || !tool.location || tool.location.length === 0) {
+        if (!tool.name || tool.name.length === 0 || !tool.location || tool.location.length === 0 ) {
             continue;
         }
 
-        let paneText = "Default tool pane text";
-        let buttonText = "Tool Button"; 
-
-        if (tool.name === "Application Navigator") {
-            paneText = "Manage your applications using Application Navigator";
-            buttonText = "Manage Applications";
-        }
-
-        if (tool.name === "Tekton") {
-            tool.name = "Pipelines"
-            paneText = "Manage your pipelines";
-            buttonText = "Manage Pipelines";
-        }
-
-        if (tool.name === "Red Hat CodeReady Workspaces") {
-            paneText = "Red Hat CodeReady Workspaces provides a consistent, secure, and zero-configuration development environment.";
-            buttonText = "Go to CodeReady";
-        }
-
-        let toolPane = new ToolPane(tool.name, tool.location, paneText, buttonText);
+        let toolPane = new ToolPane(tool.name, tool.location, tool.instancePageCardText, tool.instancePageButtonText);
         $("#tool-data-container").append(toolPane.toolHTML);
        
         noTools = false;
