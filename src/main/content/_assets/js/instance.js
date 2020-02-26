@@ -68,6 +68,7 @@ function loadAllInfo(instanceJSON) {
 
 // Set details on UI for any given instance
 function setToolData(tools) {
+    console.log('testing commit');
     let noTools = true;
 
     if (typeof tools === "undefined") {
