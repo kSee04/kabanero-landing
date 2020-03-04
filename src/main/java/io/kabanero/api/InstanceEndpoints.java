@@ -60,6 +60,8 @@ public class InstanceEndpoints extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllInstances() throws IOException, ApiException, GeneralSecurityException {
         KabaneroList kabaneros = KabaneroClient.getInstances();
+        System.out.println("!!!");
+        System.out.println(kabaneros.toString());
         if (kabaneros == null) {
             return Response.status(404).entity(new ResponseMessage("No instances found")).build();
         }
