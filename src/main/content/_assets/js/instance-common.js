@@ -30,6 +30,8 @@ function fetchAnInstance(instanceName) {
     }
     return fetch(`/api/kabanero/${instanceName}`)
         .then(function (response) {
+            console.log('RESPONSE');
+            console.log(response);
             return response.json();
         })
         .catch(error => console.error(`Error getting instance info for: ${instanceName}`, error));

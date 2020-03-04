@@ -51,6 +51,8 @@ function setListeners() {
 
 // Request to get all instances names
 function loadAllInfo(instanceJSON) {
+    console.log("LOADALLINFO");
+    console.log(instanceJSON);
     if (typeof instanceJSON === "undefined") {
         console.log("instance data is undefined, cannot load instance");
         return;
@@ -98,6 +100,7 @@ function setToolData(tools) {
 }
 
 function setInstanceCard(instanceJSON) {
+    console.log(instanceJSON);
     let repos = instanceJSON.spec.stacks ? instanceJSON.spec.stacks.repositories : [];
     let cliURL = instanceJSON.status.cli.hostnames[0];
 
