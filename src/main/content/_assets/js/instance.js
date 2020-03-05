@@ -51,8 +51,6 @@ function setListeners() {
 
 // Request to get all instances names
 function loadAllInfo(instanceJSON) {
-    console.log("LOADALLINFO");
-    console.log(instanceJSON);
     if (typeof instanceJSON === "undefined") {
         console.log("instance data is undefined, cannot load instance");
         return;
@@ -100,7 +98,6 @@ function setToolData(tools) {
 }
 
 function setInstanceCard(instanceJSON) {
-    console.log(instanceJSON);
     let repos = instanceJSON.spec.stacks ? instanceJSON.spec.stacks.repositories : [];
     let cliURL = instanceJSON.status.cli.hostnames[0];
 
@@ -108,8 +105,8 @@ function setInstanceCard(instanceJSON) {
     let $instanceDetails = $("#repo-section");
     
     repos.forEach(repo => {
-        //url will be in either the https key or the githubRelease key
-        let repoURL = repo.https ? repo.https.url : `https://${repo.githubRelease.hostname}/${repo.githubRelease.organization}/${repo.githubRelease.project}/releases/download/${repo.githubRelease.release}/${repo.githubRelease.assetName}`;
+        //url will be in either the https key or the gitRelease key
+        let repoURL = repo.https ? repo.https.url : `https://${repo.gitRelease.hostname}/${repo.gitRelease.organization}/${repo.gitRelease.project}/releases/download/${repo.gitRelease.release}/${repo.gitRelease.assetName}`;
         $instanceDetails.append(createRepositorySection(repo.name, repoURL));
     });
 
