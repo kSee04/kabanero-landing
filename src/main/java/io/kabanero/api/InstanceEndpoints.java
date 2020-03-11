@@ -96,7 +96,7 @@ public class InstanceEndpoints extends Application {
     public Response isAdmin(@PathParam("instanceName") String instanceName) throws IOException, ApiException, GeneralSecurityException {
         UserProfile userProfile = UserProfileManager.getUserProfile();
         String token = userProfile.getAccessToken();
-        GitHubClient client = new GitHubClient();
+        GitHubClient client = GithubClientHelper.getGithubClient(instanceName);
         client.setOAuth2Token(token);
 
         Kabanero instance = KabaneroClient.getAnInstance(instanceName);
@@ -131,7 +131,7 @@ public class InstanceEndpoints extends Application {
     public Response isAdmin(@PathParam("instanceName") String instanceName, @PathParam("wantedTeamName") String wantedTeamName) throws IOException, ApiException, GeneralSecurityException {
         UserProfile userProfile = UserProfileManager.getUserProfile();
         String token = userProfile.getAccessToken();
-        GitHubClient client = new GitHubClient();
+        GitHubClient client = GithubClientHelper.getGithubClient(instanceName);
         client.setOAuth2Token(token);
 
         Kabanero instance = KabaneroClient.getAnInstance(instanceName);

@@ -72,7 +72,7 @@ public class KabaneroClient {
         return null;
     }
 
-    private static ApiClient getApiClient() throws IOException, GeneralSecurityException {
+    public static ApiClient getApiClient() throws IOException, GeneralSecurityException {
         ApiClient client = null;
         String value = System.getenv("KUBERNETES_SERVICE_HOST");
         if (value != null) {
