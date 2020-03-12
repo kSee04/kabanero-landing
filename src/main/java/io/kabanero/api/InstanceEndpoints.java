@@ -101,7 +101,13 @@ public class InstanceEndpoints extends Application {
     public Response isAdmin(@PathParam("instanceName") String instanceName) throws IOException, ApiException, GeneralSecurityException {
         UserProfile userProfile = UserProfileManager.getUserProfile();
         String token = userProfile.getAccessToken();
-        GitHubClient client = GithubClientHelper.getGithubClient(instanceName);
+        String apiUrl = GithubClientHelper.getApiURL(instanceName);
+        GitHubClient client;
+        if("https://api.github.com".equals(apiUrl)){
+            client = new GitHubClient(); 
+        }else{
+            client = new GitHubClient(apiUrl);            
+        }
         client.setOAuth2Token(token);
 
         Kabanero instance = KabaneroClient.getAnInstance(instanceName);
@@ -111,6 +117,7 @@ public class InstanceEndpoints extends Application {
 
         String instanceGithubOrg = instance.getSpec().getGithub().getOrganization();
         List<String> instanceGithubTeams = instance.getSpec().getGithub().getTeams();
+
         Boolean isAdmin = false;
 
         TeamService teamService = new TeamService(client);
@@ -136,7 +143,13 @@ public class InstanceEndpoints extends Application {
     public Response getAdminList(@PathParam("instanceName") String instanceName) throws IOException, ApiException, GeneralSecurityException {
         UserProfile userProfile = UserProfileManager.getUserProfile();
         String token = userProfile.getAccessToken();
-        GitHubClient client = GithubClientHelper.getGithubClient(instanceName);
+        String apiUrl = GithubClientHelper.getApiURL(instanceName);
+        GitHubClient client;
+        if("https://api.github.com".equals(apiUrl)){
+            client = new GitHubClient(); 
+        }else{
+            client = new GitHubClient(apiUrl);            
+        }
         client.setOAuth2Token(token);
 
         Kabanero instance = KabaneroClient.getAnInstance(instanceName);
@@ -173,7 +186,13 @@ public class InstanceEndpoints extends Application {
     public Response getTeamMembers(@PathParam("instanceName") String instanceName, @PathParam("wantedTeamName") String wantedTeamName) throws IOException, ApiException, GeneralSecurityException {
         UserProfile userProfile = UserProfileManager.getUserProfile();
         String token = userProfile.getAccessToken();
-        GitHubClient client = GithubClientHelper.getGithubClient(instanceName);
+        String apiUrl = GithubClientHelper.getApiURL(instanceName);
+        GitHubClient client;
+        if("https://api.github.com".equals(apiUrl)){
+            client = new GitHubClient(); 
+        }else{
+            client = new GitHubClient(apiUrl);            
+        }
         client.setOAuth2Token(token);
 
         Kabanero instance = KabaneroClient.getAnInstance(instanceName);
