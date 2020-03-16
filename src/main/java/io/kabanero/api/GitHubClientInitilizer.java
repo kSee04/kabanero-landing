@@ -11,31 +11,20 @@ import io.kabanero.v1alpha2.client.apis.KabaneroApi;
 import io.kabanero.v1alpha2.models.Kabanero;
 import io.kubernetes.KabaneroClient;
 import io.kubernetes.client.ApiClient;
+import io.kubernetes.client.ApiException;
 
 public class GitHubClientInitilizer {
-    private final static Logger LOGGER = Logger.getLogger(GitHubClientInitilizer.class.getName());
-
     private final static String DEFAULT_NAMESPACE = "kabanero";
 
-    public static GitHubClient getClient(String instanceName) throws IOException, GeneralSecurityException {
+    public static GitHubClient getClient(String instanceName) throws IOException, GeneralSecurityException, ApiException {
         String apiUrl = getApiURL(instanceName);
-        if("https://api.github.com".equals(apiUrl)){
-            return new GitHubClient(); 
-        }else{
-            return new GitHubClient(apiUrl);            
-        }
+        return new GitHubClient(apiUrl);
     }
 
-    private static String getApiURL(String instanceName) throws IOException, GeneralSecurityException {
+    private static String getApiURL(String instanceName) throws IOException, GeneralSecurityException, ApiException {
         ApiClient client = KabaneroClient.getApiClient();
-        try{
-            KabaneroApi kabApi = new KabaneroApi(client);
-            Kabanero kabaneroInstance = kabApi.getKabanero(DEFAULT_NAMESPACE, instanceName);
-            String apiUrl = kabaneroInstance.getSpec().getGithub().getApiUrl();
-            return apiUrl;
-        }catch(Exception e){
-            LOGGER.log(Level.SEVERE, "Exception caught while trying to get apiUrl for instance with name: " + instanceName, e);
-            return null;
-        }
+        KabaneroApi kabApi = new KabaneroApi(client);
+        Kabanero kabaneroInstance = kabApi.getKabanero(DEFAULT_NAMESPACE, instanceName);
+        return kabaneroInstance.getSpec().getGithub().getApiUrl();
     }
 }
