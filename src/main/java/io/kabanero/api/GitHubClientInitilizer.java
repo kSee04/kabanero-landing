@@ -18,6 +18,9 @@ public class GitHubClientInitilizer {
 
     public static GitHubClient getClient(String instanceName) throws IOException, GeneralSecurityException, ApiException {
         String apiUrl = getApiURL(instanceName);
+        if("https://api.github.com".equals(apiUrl)){
+            return new GitHubClient();
+        }
         return new GitHubClient(apiUrl);
     }
 
