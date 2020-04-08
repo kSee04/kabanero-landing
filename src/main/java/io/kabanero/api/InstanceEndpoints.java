@@ -233,9 +233,18 @@ public class InstanceEndpoints extends Application {
         if (instance == null) {
             return Response.status(404).entity(new ResponseMessage(instanceName + " not found")).build();
         }
-
         instance.getSpec().getGovernancePolicy().setStackPolicy(String.valueOf(newPolicy.getPolicy()));
         KabaneroClient.updateInstance(instance);
+        return Response.accepted().build();
+    }
+
+    @PUT
+    @Path("/{instanceName}/update")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateInstance(@PathParam("instanceName") String instanceName, Kabanero newInstance )
+            throws IOException, ApiException, GeneralSecurityException {
+        KabaneroClient.updateInstance(newInstance);
         return Response.accepted().build();
     }
 }
