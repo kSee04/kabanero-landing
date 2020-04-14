@@ -237,14 +237,4 @@ public class InstanceEndpoints extends Application {
         KabaneroClient.updateInstance(instance);
         return Response.accepted().build();
     }
-
-    @PUT
-    @Path("/{instanceName}/update")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateInstance(@PathParam("instanceName") String instanceName, Kabanero newInstance )
-            throws IOException, ApiException, GeneralSecurityException {
-        KabaneroClient.updateInstance(newInstance);
-        return Response.accepted().build();
-    }
 }
