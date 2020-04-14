@@ -52,7 +52,7 @@ public class RestrictedInstanceEndpoints extends Application{
     public Response updateInstance(Kabanero newInstance)
             throws IOException, ApiException, GeneralSecurityException {
         if(!Admin.isAdmin(INSTANCE_NAME)){
-            return Response.status(401).entity(new ResponseMessage("User logged in is not authorized to perform update on instance: " + INSTANCE_NAME)).build();
+            return Response.status(401).entity(new ResponseMessage("User is not authorized to perform update on instance: " + INSTANCE_NAME)).build();
         }
         if(newInstance == null){
             return Response.status(500).entity(new ResponseMessage("Kabanero object passed to update endpoint is null")).build();
