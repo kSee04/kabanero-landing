@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import io.kabanero.Admin;
 import io.kabanero.v1alpha2.models.Kabanero;
 import io.kubernetes.KabaneroClient;
 import io.kubernetes.client.ApiException;
@@ -49,6 +51,9 @@ public class RestrictedInstanceEndpoints extends Application{
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateInstance(Kabanero newInstance)
             throws IOException, ApiException, GeneralSecurityException {
+        if(!Admin.isAdmin(INSTANCE_NAME)){
+            return Response.status(401).entity(new ResponseMessage("User logged in is not authorized to perform update on instance: " + INSTANCE_NAME)).build();
+        }
         if(newInstance == null){
             return Response.status(500).entity(new ResponseMessage("Kabanero object passed to update endpoint is null")).build();
         }
