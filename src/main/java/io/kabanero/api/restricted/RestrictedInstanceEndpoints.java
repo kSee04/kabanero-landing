@@ -17,6 +17,7 @@
  ******************************************************************************/
 package io.kabanero.api.restricted;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
@@ -32,6 +33,9 @@ import java.security.GeneralSecurityException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import io.kabanero.Admin;
 import io.kabanero.v1alpha2.models.Kabanero;
 import io.kubernetes.KabaneroClient;
@@ -45,6 +49,8 @@ public class RestrictedInstanceEndpoints extends Application{
     @PathParam("instanceName")
     String INSTANCE_NAME;
 
+    private final static Logger LOGGER = Logger.getLogger(RestrictedInstanceEndpoints.class.getName());
+
     @PUT
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -54,7 +60,7 @@ public class RestrictedInstanceEndpoints extends Application{
         if(!Admin.isAdmin(INSTANCE_NAME)){
             return Response.status(401).entity(new ResponseMessage("User is not authorized to perform update on instance: " + INSTANCE_NAME)).build();
         }
-        if(newInstance == null){
+        if(newInstance == null || newInstance.getMetadata() == null){
             return Response.status(500).entity(new ResponseMessage("Kabanero object passed to update endpoint is null")).build();
         }
         String kabaneroObjectName = newInstance.getMetadata().getName();
