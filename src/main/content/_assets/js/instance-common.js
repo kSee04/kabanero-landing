@@ -23,7 +23,6 @@ $(document).ready(function(){
 
         // If the clicked instance is also the current selected isntance, don't load again.
         if($btn.closest("li").hasClass("active-instance")){
-            console.log("not loading again");
             return;     
         }
 
