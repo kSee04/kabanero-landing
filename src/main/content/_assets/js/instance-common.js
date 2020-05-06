@@ -206,7 +206,6 @@ function removeTeamMember(target) {
 }
 
 function updateInstanceAdminView(adminMembersJson) {
-    console.log(adminMembersJson);
     if (!adminMembersJson || adminMembersJson == null) {
         return;
     }
