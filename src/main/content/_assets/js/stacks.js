@@ -12,12 +12,10 @@ $(document).ready(function () {
     fetchAnInstance(instanceName)
         .then(loadAllInfo);
 
-    $("#sync-stacks-icon").on("click", (e) => {
-        if (e.target.getAttribute("class") == "icon-active") {
-            let instanceName = getActiveInstanceName();
-            emptyTable();
-            syncStacks(instanceName);
-        }
+    $(".sync-stacks-icon").on("click", (e) => {
+        let instanceName = getActiveInstanceName();
+        emptyTable();
+        syncStacks(instanceName);
     });
 
     $("#stack-table-body").on("click", ".deactivate-stack-icon", e => {
@@ -39,7 +37,11 @@ $(document).ready(function () {
     $("#stack-table-body").on("click", ".digest-notification-x", e => {
         $(e.currentTarget).closest("tr").remove();
     });
-    
+
+    $("#cli-auth-error-modal").on("click", ".close-err-modal", () => {
+        $("#cli-auth-error-modal").removeClass("is-visible");
+        $(".table-loader").hide();
+    });
 });
 
 function loadAllInfo(instanceJSON){
@@ -110,7 +112,11 @@ function updateStackView(instanceJSON, stackJSON) {
     }
 
     // Stack governance policy will help us know whether to display a digest error/warning/none when the digest mismatches on the stack
-    let policy = instanceJSON.spec.governancePolicy.stackPolicy;
+    let policy = "governance policy does not exist";
+
+    if(instanceJSON.spec && instanceJSON.spec.governancePolicy){
+        policy = instanceJSON.spec.governancePolicy.stackPolicy;
+    };
 
     // yaml metadata in kube, cannot be deactivated and has no status.
     let curatedStacks = stackJSON["curated stacks"];
@@ -275,9 +281,9 @@ function handleInitialCLIAuth(instanceJSON, retries) {
     let instanceName = instanceJSON.metadata.name;
 
     retries = typeof retries === "undefined" ? 0 : retries;
-    // We use the stacks endpoint to check if a user is logged in on initial page load, if we get a 401 we'll login and retry this route
+    // We use the CLI version endpoint to check if a user is logged in on initial page load, if we get a 401 we'll login and retry this route
     // If we get back a 200 we consider ourselves successfully logged in
-    return fetch(`/api/auth/kabanero/${instanceName}/stacks`)
+    return fetch(`/api/auth/kabanero/${instanceName}/stacks/version`)
         .then(function (response) {
             // Login via cli and retry if 401 is returned on initial call
             if (retries <= CLI_LOGIN_RETRY_COUNT && response.status === 401) {
@@ -287,11 +293,17 @@ function handleInitialCLIAuth(instanceJSON, retries) {
                     });
             }
             else if (retries >= CLI_LOGIN_RETRY_COUNT){
+                $(".cli-auth-error-modal-msg").text("Failed to login to CLI server");
                 console.log("exceeded max retries to login to CLI");
                 return;
             }
             else if (response.status !== 200) {
+                $(".cli-auth-error-modal-msg").text(`${instanceName} CLI service is unable to connect`);
                 console.warn(`Initial auth into instance ${instanceName} returned status code: ${response.status}`);
+            }
+
+            if (retries >= CLI_LOGIN_RETRY_COUNT || response.status !== 200){
+                $("#cli-auth-error-modal").addClass("is-visible");
             }
 
             // pass on instanceJSON var to the next function in the promise chain
@@ -310,11 +322,13 @@ function loginViaCLI(instanceName) {
         .catch(error => console.error(`Error logging into instance ${instanceName} via CLI server`, error));
 }
 
-function displayDigest(instance){
+function displayDigest(instance){ 
     if(!instance.spec || !instance.spec.governancePolicy){
         console.log("Failed to get stack govern policy. instance.spec or instance.spec.governancePoliy does not exist.");
+        $("#stack-govern-value-text").text("not set");
         return;
     }
+
     // The way carbon dropdown works is different than normal select. 
     // This gets the current li that the server says is the current digest, and sets the display to that text.
     // Then it adds the selected class since it doesn't make sense to select the same li that is already the current digest.
